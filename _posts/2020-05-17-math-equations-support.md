@@ -1,15 +1,18 @@
 # Corolla vs Ferrari
 
 Imagine racing your car against an F1 car. Your car has speed $100~km/h$
-while the F1 car has speed $300~km/h$. The race director decides to show mercy
+while the F1 car has speed //(300~km/h\\). The race director decides to show mercy
 and gives your car a head start. How long will it take for the F1 car
 to catch up to you?
 
 Denote $t_0$ as the head start given to your car. Your car travels a distance $d$ as,
+$$
 \begin{equation}
   \label{eq:car}
   d = 100t,
 \end{equation}
+$$
+
 and the F1 car will travel that same distance as,
 \begin{equation}
   \label{eq:f1}
