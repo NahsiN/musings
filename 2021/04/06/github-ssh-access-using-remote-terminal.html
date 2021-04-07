@@ -1,0 +1,13 @@
+<h1 id="github-ssh-access-using-a-remote-terminal">Github SSH access using a remote terminal</h1>
+
+<p>To make my life easier, I recently setup ssh access to github on my <code class="language-plaintext highlighter-rouge">desktop</code> machine by following <a href="https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">Github’s instructions</a>. To test ssh access on this machine, I launched a terminal using my GNOME3 desktop environment and ran <code class="language-plaintext highlighter-rouge">ssh -T git@github.com</code> which returned</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Hi &lt;github_username&gt;! You've successfully authenticated, but GitHub does not provide shell access.
+</code></pre></div></div>
+
+<p>However, when logging into <code class="language-plaintext highlighter-rouge">desktop</code> using ssh, i.e <code class="language-plaintext highlighter-rouge">ssh user@desktop</code>, the ssh access test above failed. <a href="https://stackoverflow.com/questions/45137676/ssh-key-issue-connecting-to-github-via-remote-machine">Stackoverflow</a> to the rescue! Turns out, the ssh-keys for accessing the host <code class="language-plaintext highlighter-rouge">github.com</code> are stored in <a href="https://wiki.gnome.org/Projects/GnomeKeyring">GNOME Keyring</a> hence when logging into the machine via ssh without GNOME3, the keys could not be found.</p>
+
+<p>The solution is to create (if it doesn’t exist) a ssh config file at <code class="language-plaintext highlighter-rouge">~/.ssh/config</code> and populate it using</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Host github.com
+  IdentityFile ~/.ssh/path_to_private_key
+  IdentitiesOnly yes
+</code></pre></div></div>
